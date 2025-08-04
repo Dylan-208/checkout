@@ -8,10 +8,9 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
-    "target": "esnext",
-    "types": [],
+    "target": "es2023",
     // For nodejs:
-    // "lib": ["esnext"],
+    "lib": ["ES2023"],
     // "types": ["node"],
     // and npm install -D @types/node
 
@@ -39,6 +38,6 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   }
 }
