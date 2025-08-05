@@ -1,4 +1,4 @@
-import JWT from "jsonwebtoken";
+import JWT, { type JwtPayload } from "jsonwebtoken";
 import type User from "../../models/user.js";
 import dotenv from "dotenv";
 
@@ -16,5 +16,5 @@ export const decodeJWT = (token: string) => {
 };
 
 export const verifyJWT = (token: string) => {
-  return JWT.verify(token, process.env.JWT_SECRET as string);
+  return JWT.verify(token, process.env.JWT_SECRET as string) as JwtPayload;
 };
