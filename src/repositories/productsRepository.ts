@@ -11,6 +11,14 @@ class ProductsRepository {
       data,
     });
   }
+
+  async getById(products_id: string) {
+    return await prismaFactory.product.findFirst({
+      where: {
+        id: products_id,
+      },
+    });
+  }
 }
 
 export default ProductsRepository;

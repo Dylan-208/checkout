@@ -13,6 +13,10 @@ class UserRepository {
       where: {
         email,
       },
+      include: {
+        cart: true,
+        order: true,
+      },
     });
   }
 }
