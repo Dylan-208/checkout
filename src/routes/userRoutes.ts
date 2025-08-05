@@ -1,11 +1,10 @@
 import { Router } from "express";
 import UserController from "../controllers/userController.js";
-import authMiddleware from "../factories/authMiddlewareFactory.js";
 
-const router = Router();
+const userRouter = Router();
 const userController = new UserController();
 
-router.post("/user/register", userController.create);
-router.post("/user/login", userController.login);
+userRouter.post("/user/register", userController.create);
+userRouter.post("/user/login", userController.login);
 
-export default router;
+export default userRouter;

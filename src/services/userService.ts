@@ -38,7 +38,7 @@ class UserService {
     );
 
     if (!verifyPassword) {
-      throw new Error("senha inválidos");
+      throw new Error("Email e/ou senha inválidos");
     }
 
     const result = createJWT(verifyEmail);

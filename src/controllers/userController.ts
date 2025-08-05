@@ -8,9 +8,9 @@ class UserController {
     try {
       await userSchema.validate(req.body);
 
-      const { email, password, name } = req.body as User;
+      const { email, password, name, isAdmin } = req.body as User;
 
-      const data = { email, password, name };
+      const data = { email, password, name, isAdmin };
 
       const response = await userServiceFactory.create(data);
 

@@ -5,8 +5,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const createJWT = (dataUser: User) => {
-  const { email, name } = dataUser;
-  const jwtPayload = { email, name };
+  const { email, name, isAdmin, id } = dataUser;
+  const jwtPayload = { email, name, isAdmin, id };
   const jwt = JWT.sign(jwtPayload, process.env.JWT_SECRET as string);
   return jwt;
 };
