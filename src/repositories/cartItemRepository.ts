@@ -7,6 +7,9 @@ class CartItemRepository {
       where: {
         cart_id,
       },
+      include: {
+        product: true,
+      },
     });
   }
 
@@ -29,6 +32,14 @@ class CartItemRepository {
     return await prismaFactory.cartItem.delete({
       where: {
         id: id_cartItem,
+      },
+    });
+  }
+
+  async clearCart(cart_id: string) {
+    return await prismaFactory.cartItem.deleteMany({
+      where: {
+        cart_id,
       },
     });
   }
