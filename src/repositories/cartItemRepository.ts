@@ -24,6 +24,14 @@ class CartItemRepository {
       data,
     });
   }
+
+  async delete(id_cartItem: string) {
+    return await prismaFactory.cartItem.delete({
+      where: {
+        id: id_cartItem,
+      },
+    });
+  }
 }
 
 export default CartItemRepository;

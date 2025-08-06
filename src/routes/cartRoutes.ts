@@ -4,6 +4,9 @@ import CartController from "../controllers/cartController.js";
 
 const cartRouter = Router();
 const cartController = new CartController();
+
 cartRouter.post("/cart", authMiddleware.user, cartController.add);
+cartRouter.get("/cart", authMiddleware.user, cartController.get);
+cartRouter.delete("/cart/:id", authMiddleware.user, cartController.delete);
 
 export default cartRouter;

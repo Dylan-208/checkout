@@ -17,6 +17,35 @@ class CartController {
       res.status(400).json({ error: err.message });
     }
   }
+
+  async get(req: Request, res: Response) {
+    try {
+      const email = (req as any).email;
+
+      const result = await cartServiceFactory.get(email);
+
+      res.status(200).json(result);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  }
+
+  async delete(req: Request, res: Response) {
+    try {
+      const email = (req as any).email;
+
+      const id_cartItem = req.params.id;
+
+      if (!id_cartItem)
+        throw new Error("É necessário o id do Item no carrinho");
+
+      const result = await cartServiceFactory.delete(email, id_cartItem);
+
+      res.status(200).json(result);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  }
 }
 
 export default CartController;
