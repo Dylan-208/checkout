@@ -82,6 +82,18 @@ class OrderService {
 
     return { order, orderItens };
   }
+
+  async getAll(email: string) {
+    const dataUser = await this._userRepository.getByEmail(email);
+
+    if (!dataUser) throw new Error("Usuário inexistente");
+
+    const orderUser = await this._orderRepository.getOrderUser(dataUser.id);
+
+    if (orderUser.length === 0) return [];
+
+    return orderUser;
+  }
 }
 
 export default OrderService;

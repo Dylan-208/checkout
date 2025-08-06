@@ -13,6 +13,18 @@ class OrderController {
       res.status(400).json({ error: err.message });
     }
   }
+
+  async getAll(req: Request, res: Response) {
+    try {
+      const email = (req as any).email;
+
+      const result = await orderServiceFactory.getAll(email);
+
+      res.status(200).json(result);
+    } catch (err: any) {
+      res.status(400).json({ error: err.message });
+    }
+  }
 }
 
 export default OrderController;

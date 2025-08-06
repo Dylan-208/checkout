@@ -9,9 +9,20 @@ class OrderRepository {
   }
 
   async getById(order_id: string) {
-    return await prismaFactory.order.findFirst({
+    return await prismaFactory.order.findMany({
       where: {
         id: order_id,
+      },
+    });
+  }
+
+  async getOrderUser(user_id: string) {
+    return await prismaFactory.order.findMany({
+      where: {
+        user_id,
+      },
+      include: {
+        orderItem: true,
       },
     });
   }
