@@ -46,12 +46,14 @@ class OrderService {
           `Produto indisponível no estoque: Produto: ${item.product.name} | Estoque ${item.product.stock}`
         );
       }
+
+      product.stock = product.stock - item.quantity;
+
+      await this._productsRepository.updated(item.product_id, product);
       return 0;
     });
 
     await Promise.all(verifyStock);
-
-    if (!verifyStock) throw new Error("Produto indisponível no estoque");
 
     const totalCart = itensInCart.reduce(
       (acc, current) => acc + current.quantity * current.product.price,
@@ -76,11 +78,9 @@ class OrderService {
       await this._orderItemRepository.create(this.orderItem);
     });
 
-    const orderItens = await this._orderItemRepository.getById(order.id);
-
     this._cartItemRepository.clearCart(cart.id);
 
-    return { order, orderItens };
+    return order;
   }
 
   async getAll(email: string) {

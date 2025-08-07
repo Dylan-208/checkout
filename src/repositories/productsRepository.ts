@@ -19,6 +19,15 @@ class ProductsRepository {
       },
     });
   }
+
+  async updated(product_id: string, data: Products) {
+    return await prismaFactory.product.update({
+      where: {
+        id: product_id,
+      },
+      data,
+    });
+  }
 }
 
 export default ProductsRepository;
