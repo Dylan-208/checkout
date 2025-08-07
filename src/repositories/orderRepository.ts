@@ -9,7 +9,7 @@ class OrderRepository {
   }
 
   async getById(order_id: string) {
-    return await prismaFactory.order.findMany({
+    return await prismaFactory.order.findFirst({
       where: {
         id: order_id,
       },
@@ -23,6 +23,19 @@ class OrderRepository {
       },
       include: {
         orderItem: true,
+      },
+    });
+  }
+
+  async updated(order_id: string, dataOrder: Order) {
+    return await prismaFactory.order.update({
+      where: {
+        id: order_id,
+      },
+      data: {
+        payment_id: dataOrder.payment_id as string,
+        payment_status: dataOrder.payment_status as string,
+        status: dataOrder.status,
       },
     });
   }

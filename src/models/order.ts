@@ -3,4 +3,6 @@ export default interface Order {
   user_id: string;
   total: number;
   status: string;
+  payment_id?: string;
+  payment_status?: string;
 }
