@@ -15,9 +15,9 @@ class ProductsController {
     try {
       await productsSchema.validate(req.body);
 
-      const { name, price, stock } = req.body;
+      const { name, price, stock, weight, height, width, length } = req.body;
       const email = (req as any).email;
-      const data = { name, price, stock };
+      const data = { name, price, stock, weight, height, width, length };
 
       const response = await productsServiceFactory.create(data, email);
 

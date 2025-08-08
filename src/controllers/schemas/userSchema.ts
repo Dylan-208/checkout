@@ -1,9 +1,11 @@
-import { object, string } from "yup";
+import { boolean, object, string } from "yup";
 
 export const userSchema = object().shape({
   email: string().required().email(),
   name: string().required(),
   password: string().required(),
+  cep: string().required(),
+  isAdmin: boolean().required(),
 });
 
 export const loginSchema = object().shape({
